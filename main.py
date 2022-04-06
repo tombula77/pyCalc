@@ -64,7 +64,7 @@ def equalpress():
         expression1 = ""
 
 
-def pow():
+def power():
     global expression1
     global expression2
 
@@ -82,7 +82,6 @@ def pow():
         expression1 = ''
         equation.set(expression1)
         labtxt.set(expression2)
-
 
 
 def clear():
@@ -108,14 +107,36 @@ def delete():
 
 def invers():
     global expression1
-    expression1 = (1 / float(expression1))
-    equation.set(str(expression1))
+    global expression2
+
+    if expression1 == '':
+        pass
+    elif expression1 != '' and expression2 == '':
+        expression1 = (1 / float(expression1))
+        equation.set(str(expression1))
+    elif expression1 != '' and expression2 != '':
+        expression1 = (1 / float(expression1))
+        expression1 = eval(str(expression2)+str(expression1))
+        expression2 = ''
+        equation.set(expression1)
+        labtxt.set(expression2)
 
 
 def sqr():
     global expression1
-    expression1 = math.sqrt(float(expression1))
-    equation.set(str(expression1))
+    global expression2
+
+    if expression1 == '':
+        pass
+    elif expression1 != '' and expression2 == '':
+        expression1 = math.sqrt(float(expression1))
+        equation.set(str(expression1))
+    elif expression1 != '' and expression2 != '':
+        expression1 = math.sqrt(float(expression1))
+        expression1 = eval(str(expression2)+str(expression1))
+        expression2 = ''
+        equation.set(expression1)
+        labtxt.set(expression2)
 
 
 #def down(event):
@@ -148,7 +169,7 @@ if __name__ == "__main__":
     bdel = Button(GUI, bg='red', fg='yellow', text="\u2190", font=("", 14), command=delete)
     bdel.place(x=145, y=90, width=50, height=35)
 
-    bx2 = Button(GUI, bg='purple', fg='yellow', text="\u1d6a\u02b8", font=("", 14), command=pow)
+    bx2 = Button(GUI, bg='purple', fg='yellow', text="\u1d6a\u02b8", font=("", 14), command=power)
     bx2.place(x=25, y=135, width=50, height=35)
 
     bsqr = Button(GUI, bg='purple', fg='yellow', text="\u221a", font=("", 14), command=sqr)
